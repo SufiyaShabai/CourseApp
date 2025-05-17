@@ -2,15 +2,33 @@
 <html>
 <head>
     <title>Register</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <h2>Register</h2>
 <form id="registerForm">
-    <input type="text" id="username" placeholder="Username" required /><br/>
-    <input type="password" id="password" placeholder="Password" required /><br/>
+    <input type="text" placeholder="Username" required id="username">
+    <input type="password" placeholder="Password" required id="password">
     <button type="submit">Register</button>
 </form>
-<a href="login.html">Already have an account? Login</a>
-<script src="script.js"></script>
+<script>
+    document.getElementById("registerForm").addEventListener("submit", async e => {
+        e.preventDefault();
+        const res = await fetch("/api/auth/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                username: username.value,
+                password: password.value
+            })
+        });
+        if (res.ok) {
+            alert("Registered! Now login.");
+            window.location.href = "login.html";
+        } else {
+            alert("Username already taken.");
+        }
+    });
+</script>
 </body>
 </html>

@@ -1,62 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KodeKloud Clone</title>
-    <style>
-        body {
-          margin: 0;
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          color: white;
-          text-align: center;
-          background: linear-gradient(-45deg, #1d2b64, #f8cdda, #1d976c, #93f9b9);
-          background-size: 400% 400%;
-          animation: gradientBG 15s ease infinite;
-        }
-
-        @keyframes gradientBG {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-
-        .container {
-          padding: 80px 20px;
-        }
-
-        h1 {
-          font-size: 3em;
-          margin-bottom: 10px;
-        }
-
-        p {
-          font-size: 1.2em;
-          max-width: 600px;
-          margin: 0 auto 30px;
-        }
-
-        .button {
-          padding: 12px 24px;
-          font-size: 1em;
-          background-color: rgba(255, 255, 255, 0.15);
-          border: 2px solid white;
-          border-radius: 8px;
-          color: white;
-          text-decoration: none;
-          transition: background-color 0.3s;
-        }
-
-        .button:hover {
-          background-color: rgba(255, 255, 255, 0.3);
-        }
-    </style>
+    <title>XenoCloud</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
-    <h1>Welcome to KodeKloud Clone</h1>
-    <p>Explore DevOps, Cloud, and Backend courses. Enroll, track, and upskill—all in one place!</p>
-    <a href="/api/courses/all" class="button">View Courses (JSON)</a>
-</div>
+<header>
+    <h1>XenoCloud</h1>
+    <nav>
+        <span style="color: white; margin-right: 10px;">📊 Enrollments: 31</span>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+    </nav>
+</header>
+<main>
+    <h2>Welcome to XenoCloud</h2>
+    <a class="btn" href="courses.html">View Courses</a>
+</main>
 </body>
 </html>
+

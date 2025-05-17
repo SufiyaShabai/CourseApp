@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.HashSet;
+
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
 
@@ -19,13 +21,33 @@ public class DemoApplication implements CommandLineRunner {
 	}
 
 	@Override
+
 	public void run(String... args) throws Exception {
-		if (courseRepo.count() == 0) {
-			courseRepo.save(new Course(null, "AWS Certified Cloud Practitioner", "Beginner-level cloud course", "Cloud", null));
-			courseRepo.save(new Course(null, "Azure Fundamentals", "Intro to Microsoft Azure services", "Cloud", null));
-			courseRepo.save(new Course(null, "Docker Essentials", "Learn container basics", "DevOps", null));
-			courseRepo.save(new Course(null, "Kubernetes for Beginners", "Deploy and manage apps with Kubernetes", "DevOps", null));
-			System.out.println("✅ Sample courses inserted into the database.");
+		// WARNING: This deletes all existing courses. Do it only once!
+		courseRepo.deleteAll();
+
+		insertCourseIfMissing("AWS Solution Architect- Professional", "Advanced-level cloud course", "Cloud");
+		insertCourseIfMissing("GCP Associate Cloud Engineer", "Associate-level cloud course", "Cloud");
+		insertCourseIfMissing("Azure Fundamentals", "Intro to Microsoft Azure services", "Cloud");
+
+		insertCourseIfMissing("Git Essentials", "Learn version control", "DevOps");
+		insertCourseIfMissing("Linux", "Learn scripting", "DevOps");
+		insertCourseIfMissing("Terraform", "Learn IAC", "DevOps");
+		insertCourseIfMissing("Docker Essentials", "Learn container basics", "DevOps");
+		insertCourseIfMissing("Jenkins CICD", "Learn CICD", "DevOps");
+		insertCourseIfMissing("Kubernetes for Beginners", "Deploy and manage apps with Kubernetes", "DevOps");
+		insertCourseIfMissing("Prometheus/Grafana", "Learn monitoring tools", "DevOps");
+		insertCourseIfMissing("ELK", "Learn Tracing", "DevOps");
+
+		System.out.println("✅ Sample courses inserted after wiping existing ones.");
+	}
+
+	private void insertCourseIfMissing(String title, String description, String category) {
+		if (courseRepo.findByTitle(title).isEmpty()) {
+			courseRepo.save(new Course(null, title, description, category, new HashSet<>()));
 		}
 	}
-}
+
+
+	}
+
